@@ -19,8 +19,7 @@ const Form = () => {
         </label>
       </div>
       <button type="submit" className="btn" aria-label="Add">
-     
-        <PlusIcon className="icon"/>
+        <PlusIcon className="icon" />
       </button>
     </form>
   );

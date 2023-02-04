@@ -1,4 +1,5 @@
 import Form from "./components/Form";
+import TaskList from "./components/TaskList";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       </header>
       <div className="container">
         <Form />
+        <TaskList/>
       </div>
     </>
   );

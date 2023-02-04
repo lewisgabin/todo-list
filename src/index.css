@@ -57,7 +57,6 @@ body {
 .container {
   display: grid;
   gap: clamp(2rem, 3.5vmax, 8rem);
-  text-align: center;
 }
 
 header {
@@ -82,7 +81,6 @@ header {
 }
 
 .btn {
-  max-width: fit-content;
   display: flex;
   place-items: center;
   gap: 0.5em;
@@ -93,6 +91,19 @@ header {
   border-radius: var(--_radius);
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+#delete {
+  background: #e53916;
+  margin-left: 9px;
+}
+#delete,
+#edit {
+  padding: 12px;
+}
+
+#delete:where(:active, :hover) {
+  background: #d03617;
 }
 
 .btn :where(svg, img, span) {
@@ -168,4 +179,74 @@ header {
 
 .input::placeholder {
   opacity: 0;
+}
+
+.taskList {
+  display: grid;
+  list-style-type: none;
+  gap: 1.5em;
+  margin-top: 90px;
+  justify-self: center;
+  min-width: 40%;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  font-size: 13px;
+  border: 0.4em solid white;
+  padding: 1.1rem;
+  border-radius: calc(var(--_radius) * 6);
+  background-color: #5944c10a;
+}
+.taskGroup {
+  display: flex;
+  align-items: center;
+  --taskgroup-gap: 0.5em;
+  gap: var(--taskgroup-gap);
+}
+
+.taskGroup label {
+  font-size: 20px;
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  background-color: white;
+  border-radius: 0.3em;
+  appearance: none;
+  border: 2px solid #5944c1;
+}
+
+.checkbox:is(:focus-visible, :hover) {
+  box-shadow: 0 0 0 hsl(var(--bg)), 0 0 0 0.05em hsl(var(--accent)),
+    0 0 0 0.225em hsl(var(--accent) / 0.3);
+}
+
+.checkbox:checked {
+  background-color: hsl(var(--accent));
+}
+
+.mark {
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  display: grid;
+  place-items: center;
+  color: white;
+  transform: translate3d(calc(-80% - var(--taskgroup-gap)), -5%, 0);
+  transition: background-color 80ms ease-in-out;
+}
+
+.mark svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.checkbox:checked + label {
+  text-decoration: line-through;
 }
