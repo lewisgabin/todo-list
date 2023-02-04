@@ -1,9 +1,10 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = () => {
+const TaskList = ({openEditForm}) => {
   return (
+    
     <ul className="taskList">
-      <TaskItem />
+      <TaskItem openEditForm={openEditForm} />
     </ul>
   );
 };

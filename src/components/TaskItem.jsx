@@ -3,7 +3,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-const TaskItem = () => {
+const TaskItem = ({ openEditForm }) => {
   return (
     <>
       <li className="task">
@@ -19,7 +19,12 @@ const TaskItem = () => {
           </label>
         </div>
         <div className="taskGroup">
-          <button type="button" className="btn" id="edit" aria-label="edit">
+          <button
+            onClick={() => openEditForm()}
+            className="btn"
+            id="edit"
+            aria-label="edit"
+          >
             <PencilSquareIcon strokeWidth={2} width={24} height={24} />
           </button>
 
