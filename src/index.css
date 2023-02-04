@@ -1,69 +1,171 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  padding: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font: inherit;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+input,
+label {
+  font: inherit;
+}
+
+:root {
+  --_hue: 256;
+  --_size: 1.8rem;
+  --_radius: 0.2em;
+  --_tspeed_fast: 180ms;
+  --_tspeed_slow: 300ms;
+  --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15);
+
+  --bg--light: var(--_hue) 30% 94%;
+  --accent--light: var(--_hue) 55% 50%;
+}
+
+:root {
+  --bg: var(--bg--light);
+  --accent: var(--accent--light);
+}
+
+@media screen and (max-width: 768px) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --_size: 1.6rem;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+body {
+  min-height: 100vh;
+  justify-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #48b1ee2e;
+  color: hsl(var(--txt));
+}
+
+::selection {
+  background: #5f39c6;
+  color: #ddf0fb;
+}
+
+.container {
+  display: grid;
+  gap: clamp(2rem, 3.5vmax, 8rem);
+  text-align: center;
+}
+
+header {
+  background: #48b1ee;
+  width: 100%;
+  height: 170px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+#title {
+  text-align: left;
+  font-family: Comic Sans MS;
+  font-weight: bold;
+  font-size: 50px;
+  color: #dcf0fa;
+  text-shadow: -1px 0 #5944c1, 0 1px #414d68, 1px 0 #414d68, 0 -1px #414d68,
+    -2px 2px 0 #414d68, 2px 2px 0 #414d68, 1px 1px #414d68, 2px 2px #5944c1,
+    3px 3px #5944c1, 4px 4px #414d68, 5px 5px #414d68;
+}
+
+.btn {
+  max-width: fit-content;
+  display: flex;
+  place-items: center;
+  gap: 0.5em;
+  background-color: #5f39c6;
+  color: white;
+  text-decoration: none;
+  padding: 0.6em;
+  border-radius: var(--_radius);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.btn :where(svg, img, span) {
+  pointer-events: none;
+}
+
+.icon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.btn:where(:active, :hover) {
+  background-color: #340f9b;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.taskForm {
+  display: flex;
+  gap: 1em;
+  font-size: 1.8rem;
+  text-align: left;
+  top: 140px;
+  position: absolute;
+  height: 54px;
+  bottom: -27px;
+  width: 70%;
+  left: 15%;
+  right: 15%;
+}
+
+.wrapper {
+  flex: 1 1 100%;
+  position: relative;
+  display: grid;
+  gap: 0.2em;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  margin-inline: 0.45em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.1em 0.35em;
+  color: black;
+}
+
+.input {
+  border: none;
+  border-radius: var(--_radius);
+  padding: 0.35em 0.55em;
+  width: 100%;
+  background-color: white;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2em hsl(var(--bg)), 0 0 0 0.4em hsl(var(--accent) / 0.8);
+}
+
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label {
+  transform: translate3d(0, -3.45em, 0);
+  background: #48b1ee;
+  color: white;
+}
+
+.input::placeholder {
+  opacity: 0;
 }
