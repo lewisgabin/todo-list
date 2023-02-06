@@ -1,8 +1,17 @@
+import Counter from "./Counter";
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ openEditForm, tasks, deleteTask,toggleCompleteTask }) => {
+const TaskList = ({
+  openEditForm,
+  tasks,
+  deleteTask,
+  toggleCompleteTask,
+  countTask,
+  countTaskCompleted,
+}) => {
   return (
     <ul className="taskList">
+      <Counter countTask={countTask}  countTaskCompleted={countTaskCompleted} />
       {tasks.map((task, index) => {
         return (
           <TaskItem

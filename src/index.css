@@ -185,7 +185,6 @@ header {
   display: grid;
   list-style-type: none;
   gap: 1.5em;
-  margin-top: 90px;
   justify-self: center;
   min-width: 40%;
 }
@@ -282,6 +281,57 @@ header {
   background: #eeebf4;
   color: black;
 }
+.counter {
+
+  position: relative;
+  margin-top: 70px;
+}
+.right{
+  float: right;
+  display: flex;
+}
+
+.right p,.left p{
+  color:#5f39c6;
+  font-weight: 500;
+  font-size:14px;
+  
+}
+
+.right span,.left span{
+  color:#5f39c6;
+  font-weight: 500;
+  font-size:14px;
+  margin-left: 6px;
+  background:#48b1ee;
+  color:white;
+  border-radius: 8px;
+  padding: 2px 8px 2px 8px;
+  
+}
+
+.left{
+  float: left;
+  display: flex;
+}
+
+.msj{
+  margin: auto;
+  width: 70%;
+  border: 5px solid white;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 90px;
+  background-color: #5944c10a;
+}
+
+.msj p{
+ font-size:19px;
+ font-weight: 400;
+ 
+}
+
 
 @media screen and (max-width: 768px) {
   .taskList,

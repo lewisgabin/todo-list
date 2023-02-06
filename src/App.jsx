@@ -13,7 +13,7 @@ import {
   orderBy,
   updateDoc,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
+
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -97,6 +97,15 @@ function App() {
     });
   };
 
+  const countTask = () => {
+    return tasks.length;
+  };
+
+  const countTaskCompleted = () => {
+    const completed = tasks.filter((task) => task.completed == true);
+    return completed.length;
+  };
+
   return (
     <>
       <header>
@@ -117,13 +126,19 @@ function App() {
           description={description}
           setDescription={setDescription}
         />
-        {tasks && (
+        {tasks.length ? (
           <TaskList
             deleteTask={deleteTask}
             tasks={tasks}
             openEditForm={openEditForm}
             toggleCompleteTask={toggleCompleteTask}
+            countTask={countTask}
+            countTaskCompleted={countTaskCompleted}
           />
+        ) : (
+          <div className="msj">
+            <p>No tasks to show...</p>
+          </div>
         )}
       </div>
     </>
