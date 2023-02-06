@@ -1,17 +1,14 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
-const Form = () => {
-  const handleFormSubmit = (e) => {
-    e.preventDefaul();
-    console.log(e.target.value);
-  };
+const Form = ({ createTask, description, setDescription }) => {
   return (
-    <form className="taskForm" onSubmit={handleFormSubmit}>
+    <form className="taskForm" onSubmit={createTask}>
       <div className="wrapper">
         <input
           type="text"
           className="input"
           id="task"
-          required
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
           placeholder="Enter Task"
         />
         <label htmlFor="task" className="label">

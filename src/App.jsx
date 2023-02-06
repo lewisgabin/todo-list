@@ -3,10 +3,19 @@ import EditForm from "./components/EditForm";
 import Form from "./components/Form";
 import TaskList from "./components/TaskList";
 import db from "./firebase/firebaseConfig";
-import { collection, deleteDoc, onSnapshot, doc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  onSnapshot,
+  doc,
+  addDoc,
+} from "firebase/firestore";
+import { async } from "@firebase/util";
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [description, setDescription] = useState("");
+  const [comfirmed, setComfirmed] = useState(false);
   const tasksCollectionRef = collection(db, "tasks");
 
   const openEditForm = () => {
@@ -17,6 +26,22 @@ function App() {
   };
 
   //Create task
+  const createTask = async (e) => {
+    e.preventDefault();
+
+    if (description === "") {
+      alert("Please, write a task!");
+      return;
+    }
+
+    addDoc(tasksCollectionRef, { description, comfirmed })
+      .then((response) => {
+        setDescription("");
+      })
+      .catch((error) => {
+        console.log(error.messages);
+      });
+  };
   //Read task from firabasa
   useEffect(() => {
     const unsubscribe = onSnapshot(tasksCollectionRef, (snapshot) => {
@@ -44,7 +69,11 @@ function App() {
       <div className="container">
         {isEditing && <EditForm closeEditForm={closeEditForm} />}
 
-        <Form />
+        <Form
+          createTask={createTask}
+          description={description}
+          setDescription={setDescription}
+        />
         {tasks && (
           <TaskList
             deleteTask={deleteTask}
