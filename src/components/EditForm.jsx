@@ -31,6 +31,18 @@ const EditForm = ({
             Edit Task
           </label>
         </div>
+        <div className="wrapper">
+          <textarea
+            className="textarea"
+            id="textarea"
+            required
+            rows="3"
+            cols="50"
+          />
+          <label htmlFor="textarea" className="label">
+            Enter Description
+          </label>
+        </div>
         <button type="submit" className="btn" aria-label="Edit">
           <CheckIcon className="icon" />
         </button>

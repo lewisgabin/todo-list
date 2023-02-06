@@ -172,8 +172,7 @@ header {
 .input:focus ~ .label,
 .input:not(:placeholder-shown) ~ .label {
   transform: translate3d(0, -3.45em, 0);
-  background: #48b1ee;
-  color: white;
+  background: transparent;
 }
 
 .textarea {
@@ -183,7 +182,7 @@ header {
 .textarea:focus ~ .label,
 .textarea:not(:placeholder-shown) ~ .label {
   transform: translate3d(0, -3.95em, 0);
-  background: #ddf0fb;
+  background: transparent;
   color: black;
 }
 
@@ -272,7 +271,7 @@ header {
 }
 
 [role="dialog"] .taskForm {
-  top: 35%;
+  margin-top: 120px;
   padding: 2em 1.3em 4.3em;
   background-color: hsl(var(--bg));
   border-radius: var(--_radius);
@@ -280,9 +279,12 @@ header {
   box-shadow: 0 1em 3em #5944c14e, 0 1em 3em hsl(var(--accent) / 0.2);
 }
 
-[role="dialog"] .btn {
-  padding: 27px;
+[role="dialog"] .textarea:not(:placeholder-shown) ~ .label {
+  transform: translate3d(0, -2.45em, 0);
+  background: transparent;
+  color: black;
 }
+
 [role="dialog"] .label {
   top: 29px;
 }
@@ -292,6 +294,7 @@ header {
   background: #eeebf4;
   color: black;
 }
+
 .counter {
   position: relative;
 }
