@@ -3,7 +3,7 @@ import EditForm from "./components/EditForm";
 import Form from "./components/Form";
 import TaskList from "./components/TaskList";
 import db from "./firebase/firebaseConfig";
-import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
+import { collection, deleteDoc, onSnapshot, doc } from "firebase/firestore";
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -19,12 +19,13 @@ function App() {
   //Create task
   //Read task from firabasa
   useEffect(() => {
-    const getTasks = async () => {
-      const data = await getDocs(tasksCollectionRef);
-      setTasks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+    const unsubscribe = onSnapshot(tasksCollectionRef, (snapshot) => {
+      setTasks(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
 
-    getTasks();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   //Updated task from firabasa
