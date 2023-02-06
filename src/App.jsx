@@ -9,6 +9,8 @@ import {
   onSnapshot,
   doc,
   addDoc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 function App() {
@@ -33,8 +35,8 @@ function App() {
       alert("Please, write a task!");
       return;
     }
-
-    addDoc(tasksCollectionRef, { description, comfirmed })
+    const createdAt = Date.now();
+    addDoc(tasksCollectionRef, { description, comfirmed, createdAt })
       .then((response) => {
         setDescription("");
       })
@@ -44,7 +46,8 @@ function App() {
   };
   //Read task from firabasa
   useEffect(() => {
-    const unsubscribe = onSnapshot(tasksCollectionRef, (snapshot) => {
+    const q = query(tasksCollectionRef, orderBy("createdAt","desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       setTasks(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
 
