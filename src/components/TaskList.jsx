@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ openEditForm, tasks, deleteTask,  }) => {
+const TaskList = ({ openEditForm, tasks, deleteTask,toggleCompleteTask }) => {
   return (
     <ul className="taskList">
       {tasks.map((task, index) => {
@@ -10,6 +10,7 @@ const TaskList = ({ openEditForm, tasks, deleteTask,  }) => {
             openEditForm={openEditForm}
             index={index}
             task={task}
+            toggleCompleteTask={toggleCompleteTask}
             key={task.id}
           />
         );

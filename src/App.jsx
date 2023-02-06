@@ -19,7 +19,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState("");
   const [taskId, settaskId] = useState("");
-  const [comfirmed, setComfirmed] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const tasksRef = collection(db, "tasks");
 
   const openEditForm = (description, id) => {
@@ -43,7 +43,7 @@ function App() {
       return;
     }
     const createdAt = Date.now();
-    addDoc(tasksRef, { description, comfirmed, createdAt })
+    addDoc(tasksRef, { description, completed, createdAt })
       .then(() => {
         setDescription("");
       })
@@ -89,6 +89,14 @@ function App() {
     await deleteDoc(taskDoc);
   };
 
+  //toggle complete task
+  const toggleCompleteTask = async (taskId, completed) => {
+    const tasksRef = doc(db, "tasks", taskId);
+    await updateDoc(tasksRef, { completed: !completed }).catch((error) => {
+      console.log(error.message);
+    });
+  };
+
   return (
     <>
       <header>
@@ -114,6 +122,7 @@ function App() {
             deleteTask={deleteTask}
             tasks={tasks}
             openEditForm={openEditForm}
+            toggleCompleteTask={toggleCompleteTask}
           />
         )}
       </div>

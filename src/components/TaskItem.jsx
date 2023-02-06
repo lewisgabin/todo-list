@@ -3,12 +3,25 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-const TaskItem = ({ openEditForm, task, index, deleteTask }) => {
+const TaskItem = ({
+  openEditForm,
+  task,
+  index,
+  deleteTask,
+  doneTask,
+  toggleCompleteTask,
+}) => {
   return (
     <>
       <li className="task">
         <div className="taskGroup">
-          <input type="checkbox" className="checkbox" id={`check${index}`} />
+          <input
+            type="checkbox"
+            checked={task.completed}
+            onClick={() => toggleCompleteTask(task.id,task.completed)}
+            className="checkbox"
+            id={`check${index}`}
+          />
 
           <label htmlFor={`check${index}`}>
             <p className="mark">
