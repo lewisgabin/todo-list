@@ -26,5 +26,5 @@ To Visit App:
 
 `http://localhost:5173/`  
 
-## other
+
 
