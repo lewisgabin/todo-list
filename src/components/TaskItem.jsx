@@ -19,7 +19,7 @@ const TaskItem = ({ openEditForm, task, index, deleteTask }) => {
         </div>
         <div className="taskGroup">
           <button
-            onClick={() => openEditForm(task.description,task.id)}
+            onClick={() => openEditForm(task.description, task.id)}
             className="btn"
             id="edit"
             aria-label="edit"
@@ -27,7 +27,13 @@ const TaskItem = ({ openEditForm, task, index, deleteTask }) => {
             <PencilSquareIcon strokeWidth={2} width={24} height={24} />
           </button>
 
-          <button type="button" onClick={()=>deleteTask(task.id)} className="btn" id="delete" aria-label="delete">
+          <button
+            type="button"
+            onClick={() => deleteTask(task.id)}
+            className="btn"
+            id="delete"
+            aria-label="delete"
+          >
             <TrashIcon strokeWidth={2} width={24} height={24} />
           </button>
         </div>
