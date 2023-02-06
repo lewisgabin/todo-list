@@ -11,19 +11,25 @@ import {
   addDoc,
   query,
   orderBy,
+  updateDoc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState("");
+  const [taskId, settaskId] = useState("");
   const [comfirmed, setComfirmed] = useState(false);
-  const tasksCollectionRef = collection(db, "tasks");
+  const tasksRef = collection(db, "tasks");
 
-  const openEditForm = () => {
+  const openEditForm = (description, id) => {
+    setDescription(description);
+    settaskId(id);
     setIsEditing(true);
   };
   const closeEditForm = () => {
+    setDescription("");
+    settaskId("");
     setIsEditing(false);
   };
 
@@ -36,17 +42,17 @@ function App() {
       return;
     }
     const createdAt = Date.now();
-    addDoc(tasksCollectionRef, { description, comfirmed, createdAt })
-      .then((response) => {
+    addDoc(tasksRef, { description, comfirmed, createdAt })
+      .then(() => {
         setDescription("");
       })
       .catch((error) => {
-        console.log(error.messages);
+        console.log(error.message);
       });
   };
   //Read task from firabasa
   useEffect(() => {
-    const q = query(tasksCollectionRef, orderBy("createdAt","desc"));
+    const q = query(tasksRef, orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setTasks(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
@@ -57,6 +63,23 @@ function App() {
   }, []);
 
   //Updated task from firabasa
+  const updatedTask = async (e) => {
+    e.preventDefault();
+
+    if (description === "") {
+      alert("Please, write a task!");
+      return;
+    }
+
+    const tasksRef = doc(db, "tasks", taskId);
+    await updateDoc(tasksRef, { description })
+      .then(() => {
+        closeEditForm();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   //Delete task from firabasa
   const deleteTask = async (id) => {
@@ -70,7 +93,14 @@ function App() {
         <h1 id="title">Todo List</h1>
       </header>
       <div className="container">
-        {isEditing && <EditForm closeEditForm={closeEditForm} />}
+        {isEditing && (
+          <EditForm
+            description={description}
+            setDescription={setDescription}
+            closeEditForm={closeEditForm}
+            updatedTask={updatedTask}
+          />
+        )}
 
         <Form
           createTask={createTask}

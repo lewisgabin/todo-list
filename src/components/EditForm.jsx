@@ -1,17 +1,19 @@
 import { CheckIcon} from "@heroicons/react/24/outline";
-const EditForm = ({closeEditForm}) => {
+const EditForm = ({closeEditForm,updatedTask, description, setDescription}) => {
   const handleFormSubmit = (e) => {
     e.preventDefaul();
     console.log(e.target.value);
   };
   return (
     <div role="dialog"  onClick={(e) => {e.target === e.currentTarget && closeEditForm()}}>
-    <form className="taskForm" onSubmit={handleFormSubmit}>
+    <form className="taskForm" onSubmit={updatedTask}>
       <div className="wrapper">
         <input
           type="text"
           className="input"
           id="editTask"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
           required
           placeholder="Enter Task"
         />

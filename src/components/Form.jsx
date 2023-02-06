@@ -9,6 +9,7 @@ const Form = ({ createTask, description, setDescription }) => {
           id="task"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
+          required
           placeholder="Enter Task"
         />
         <label htmlFor="task" className="label">

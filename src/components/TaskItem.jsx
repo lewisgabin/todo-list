@@ -19,7 +19,7 @@ const TaskItem = ({ openEditForm, task, index, deleteTask }) => {
         </div>
         <div className="taskGroup">
           <button
-            onClick={() => openEditForm()}
+            onClick={() => openEditForm(task.description,task.id)}
             className="btn"
             id="edit"
             aria-label="edit"
