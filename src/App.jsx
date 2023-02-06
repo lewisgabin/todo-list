@@ -27,6 +27,7 @@ function App() {
     settaskId(id);
     setIsEditing(true);
   };
+
   const closeEditForm = () => {
     setDescription("");
     settaskId("");
@@ -50,7 +51,8 @@ function App() {
         console.log(error.message);
       });
   };
-  //Read task from firabasa
+
+  //Read task from firebasa
   useEffect(() => {
     const q = query(tasksRef, orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -62,7 +64,7 @@ function App() {
     };
   }, []);
 
-  //Updated task from firabasa
+  //Updated task from firebasa
   const updatedTask = async (e) => {
     e.preventDefault();
 
@@ -81,7 +83,7 @@ function App() {
       });
   };
 
-  //Delete task from firabasa
+  //Delete task from firebasa
   const deleteTask = async (id) => {
     const taskDoc = doc(db, "tasks", id);
     await deleteDoc(taskDoc);
