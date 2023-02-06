@@ -14,7 +14,19 @@ const Form = ({ createTask, description, setDescription }) => {
           placeholder="Enter Task"
         />
         <label htmlFor="task" className="label">
-          Enter Task
+          Enter Title
+        </label>
+      </div>
+      <div className="wrapper">
+        <textarea
+          className="textarea"
+          id="textarea"
+          required
+          rows="2"
+          cols="50"
+        />
+        <label htmlFor="textarea" className="label">
+          Enter Description
         </label>
       </div>
       <button type="submit" className="btn" aria-label="Add">

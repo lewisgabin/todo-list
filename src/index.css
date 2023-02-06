@@ -13,7 +13,8 @@ button {
 }
 
 input,
-label {
+label,
+textarea {
   font: inherit;
 }
 
@@ -62,10 +63,10 @@ body {
 header {
   background: #48b1ee;
   width: 100%;
-  height: 170px;
+  height: 130px;
   display: flex;
   position: relative;
-  align-items: center;
+
   justify-content: center;
 }
 
@@ -124,17 +125,13 @@ header {
 }
 
 .taskForm {
-  display: flex;
-  gap: 1em;
+  display: grid;
+  gap: 1.4em;
   font-size: 1.8rem;
   text-align: left;
-  top: 140px;
-  position: absolute;
-  height: 54px;
-  bottom: -27px;
   width: 70%;
-  left: 15%;
-  right: 15%;
+  margin: auto;
+  margin-top: -32px;
 }
 
 .wrapper {
@@ -157,15 +154,18 @@ header {
   color: black;
 }
 
-.input {
+.input,
+.textarea {
   border: none;
   border-radius: var(--_radius);
-  padding: 0.35em 0.55em;
+  padding: 0.25em 0.45em;
   width: 100%;
+
   background-color: white;
 }
 
-.input:focus {
+.input:focus,
+.textarea:focus {
   outline: none;
   box-shadow: 0 0 0 0.2em hsl(var(--bg)), 0 0 0 0.4em hsl(var(--accent) / 0.8);
 }
@@ -177,7 +177,19 @@ header {
   color: white;
 }
 
-.input::placeholder {
+.textarea {
+  margin-top: 20px;
+}
+
+.textarea:focus ~ .label,
+.textarea:not(:placeholder-shown) ~ .label {
+  transform: translate3d(0, -3.95em, 0);
+  background: #ddf0fb;
+  color: black;
+}
+
+.input::placeholder,
+.textarea::placeholder {
   opacity: 0;
 }
 
@@ -282,56 +294,52 @@ header {
   color: black;
 }
 .counter {
-
   position: relative;
   margin-top: 70px;
 }
-.right{
+.right {
   float: right;
   display: flex;
 }
 
-.right p,.left p{
-  color:#5f39c6;
+.right p,
+.left p {
+  color: #5f39c6;
   font-weight: 500;
-  font-size:14px;
-  
+  font-size: 14px;
 }
 
-.right span,.left span{
-  color:#5f39c6;
+.right span,
+.left span {
+  color: #5f39c6;
   font-weight: 500;
-  font-size:14px;
+  font-size: 14px;
   margin-left: 6px;
-  background:#48b1ee;
-  color:white;
+  background: #48b1ee;
+  color: white;
   border-radius: 8px;
   padding: 2px 8px 2px 8px;
-  
 }
 
-.left{
+.left {
   float: left;
   display: flex;
 }
 
-.msj{
+.msj {
   margin: auto;
   width: 70%;
   border: 5px solid white;
   border-radius: 15px;
   padding: 40px;
   text-align: center;
-  margin-top: 90px;
   background-color: #5944c10a;
 }
 
-.msj p{
- font-size:19px;
- font-weight: 400;
- 
+.msj p {
+  font-size: 19px;
+  font-weight: 400;
 }
-
 
 @media screen and (max-width: 768px) {
   .taskList,
