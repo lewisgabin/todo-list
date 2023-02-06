@@ -197,6 +197,7 @@ header {
   gap: 1.5em;
   justify-self: center;
   min-width: 40%;
+  max-width: 90%;
 }
 
 .task {
@@ -209,6 +210,7 @@ header {
   padding: 1.1rem;
   border-radius: calc(var(--_radius) * 6);
   background-color: #5944c10a;
+  
 }
 .taskGroup {
   display: flex;
@@ -222,13 +224,14 @@ header {
 }
 
 .checkbox {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
   background-color: white;
   border-radius: 0.3em;
   appearance: none;
+  padding: 7px;
   border: 2px solid #5944c1;
+  margin-right: 10px;
 }
 
 .checkbox:is(:focus-visible, :hover) {
@@ -240,14 +243,32 @@ header {
   background-color: hsl(var(--accent));
 }
 
+.title{
+  font-size:22px;
+  font-weight: 400;
+  text-transform: lowercase;
+  
+}
+.title:first-letter {
+  text-transform: uppercase;
+}
+.task:last-child{
+  margin-bottom: 65px;
+}
+.description{
+
+  width:auto;
+  
+}
 .mark {
   position: absolute;
   width: 1.5em;
   height: 1.5em;
+  margin-top: 14px;
   display: grid;
   place-items: center;
   color: white;
-  transform: translate3d(calc(-80% - var(--taskgroup-gap)), -5%, 0);
+  transform: translate3d(calc(-115% - var(--taskgroup-gap)), -5%, 0);
   transition: background-color 80ms ease-in-out;
 }
 
@@ -347,6 +368,8 @@ header {
   .taskForm {
     width: 92%;
   }
+
+
 
   .taskForm {
     left: 4%;

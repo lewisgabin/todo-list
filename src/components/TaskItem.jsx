@@ -27,7 +27,8 @@ const TaskItem = ({
             <p className="mark">
               <CheckIcon strokeWidth={2} width={24} height={24} />
             </p>
-            {task.description}
+            <p className="title">{task.title}</p>
+           <p className="description">{task.description}</p> 
           </label>
         </div>
         <div className="taskGroup">
