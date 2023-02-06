@@ -17,6 +17,7 @@ import {
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [taskId, settaskId] = useState("");
   const [completed, setCompleted] = useState(false);
@@ -38,14 +39,15 @@ function App() {
   const createTask = async (e) => {
     e.preventDefault();
 
-    if (description === "") {
-      alert("Please, write a task!");
+    if (description === "" || title ==="") {
+      alert("Please, complete the form!");
       return;
     }
     const createdAt = Date.now();
-    addDoc(tasksRef, { description, completed, createdAt })
+    addDoc(tasksRef, {title, description, completed, createdAt })
       .then(() => {
         setDescription("");
+        setTitle('');
       })
       .catch((error) => {
         console.log(error.message);
@@ -123,6 +125,8 @@ function App() {
 
         <Form
           createTask={createTask}
+          title={title}
+          setTitle={setTitle}
           description={description}
           setDescription={setDescription}
         />

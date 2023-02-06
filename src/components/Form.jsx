@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-const Form = ({ createTask, description, setDescription }) => {
+const Form = ({ createTask, description, setDescription, setTitle, title }) => {
   return (
     <form className="taskForm" onSubmit={createTask}>
       <div className="wrapper">
@@ -8,8 +8,8 @@ const Form = ({ createTask, description, setDescription }) => {
           type="text"
           className="input"
           id="task"
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
           required
           placeholder="Enter Task"
         />
@@ -20,6 +20,8 @@ const Form = ({ createTask, description, setDescription }) => {
       <div className="wrapper">
         <textarea
           className="textarea"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
           id="textarea"
           required
           rows="2"
