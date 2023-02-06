@@ -38,7 +38,7 @@ function App() {
         {isEditing && <EditForm closeEditForm={closeEditForm} />}
 
         <Form />
-        <TaskList tasks={tasks} openEditForm={openEditForm} />
+        {tasks && <TaskList tasks={tasks} openEditForm={openEditForm} />}
       </div>
     </>
   );
