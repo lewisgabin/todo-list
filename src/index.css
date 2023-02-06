@@ -82,13 +82,12 @@ header {
 }
 
 .btn {
-  display: flex;
-  place-items: center;
+  margin: auto;
   gap: 0.5em;
   background-color: #5f39c6;
   color: white;
   text-decoration: none;
-  padding: 0.6em;
+  padding: 0.41em 2em;
   border-radius: var(--_radius);
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -295,7 +294,6 @@ header {
 }
 .counter {
   position: relative;
-  margin-top: 70px;
 }
 .right {
   float: right;
