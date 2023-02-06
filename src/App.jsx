@@ -3,7 +3,7 @@ import EditForm from "./components/EditForm";
 import Form from "./components/Form";
 import TaskList from "./components/TaskList";
 import db from "./firebase/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -26,8 +26,14 @@ function App() {
 
     getTasks();
   }, []);
+
   //Updated task from firabasa
+
   //Delete task from firabasa
+  const deleteTask = async (id) => {
+    const taskDoc = doc(db, "tasks", id);
+    await deleteDoc(taskDoc);
+  };
 
   return (
     <>
@@ -38,7 +44,13 @@ function App() {
         {isEditing && <EditForm closeEditForm={closeEditForm} />}
 
         <Form />
-        {tasks && <TaskList tasks={tasks} openEditForm={openEditForm} />}
+        {tasks && (
+          <TaskList
+            deleteTask={deleteTask}
+            tasks={tasks}
+            openEditForm={openEditForm}
+          />
+        )}
       </div>
     </>
   );
