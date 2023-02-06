@@ -17,7 +17,7 @@ Installation:
 
 `npm install`  
 
-Connection to firabase
+Connection to firabase:
 
 `rename .env.example to .env.local`
 
