@@ -18,7 +18,7 @@ const TaskItem = ({
           <input
             type="checkbox"
             checked={task.completed}
-            onClick={() => toggleCompleteTask(task.id,task.completed)}
+            onClick={() => toggleCompleteTask(task.id, task.completed)}
             className="checkbox"
             id={`check${index}`}
           />
@@ -32,7 +32,13 @@ const TaskItem = ({
         </div>
         <div className="taskGroup">
           <button
-            onClick={() => openEditForm(task.description, task.id)}
+            onClick={() =>
+              openEditForm({
+                description: task.description,
+                id: task.id,
+                title: task.title,
+              })
+            }
             className="btn"
             id="edit"
             aria-label="edit"

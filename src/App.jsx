@@ -23,13 +23,15 @@ function App() {
   const [completed, setCompleted] = useState(false);
   const tasksRef = collection(db, "tasks");
 
-  const openEditForm = (description, id) => {
+  const openEditForm = ({ description, id, title }) => {
+    setTitle(title);
     setDescription(description);
     settaskId(id);
     setIsEditing(true);
   };
 
   const closeEditForm = () => {
+    setTitle("");
     setDescription("");
     settaskId("");
     setIsEditing(false);
@@ -39,15 +41,15 @@ function App() {
   const createTask = async (e) => {
     e.preventDefault();
 
-    if (description === "" || title ==="") {
+    if (description === "" || title === "") {
       alert("Please, complete the form!");
       return;
     }
     const createdAt = Date.now();
-    addDoc(tasksRef, {title, description, completed, createdAt })
+    addDoc(tasksRef, { title, description, completed, createdAt })
       .then(() => {
         setDescription("");
-        setTitle('');
+        setTitle("");
       })
       .catch((error) => {
         console.log(error.message);
@@ -70,13 +72,13 @@ function App() {
   const updatedTask = async (e) => {
     e.preventDefault();
 
-    if (description === "") {
-      alert("Please, write a task!");
+    if (description === "" || title === "") {
+      alert("Please, complete the form!");
       return;
     }
 
     const tasksRef = doc(db, "tasks", taskId);
-    await updateDoc(tasksRef, { description })
+    await updateDoc(tasksRef, { description, title })
       .then(() => {
         closeEditForm();
       })
@@ -116,6 +118,8 @@ function App() {
       <div className="container">
         {isEditing && (
           <EditForm
+            title={title}
+            setTitle={setTitle}
             description={description}
             setDescription={setDescription}
             closeEditForm={closeEditForm}

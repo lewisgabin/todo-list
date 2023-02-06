@@ -2,13 +2,11 @@ import { CheckIcon } from "@heroicons/react/24/outline";
 const EditForm = ({
   closeEditForm,
   updatedTask,
+  title,
+  setTitle,
   description,
   setDescription,
 }) => {
-  const handleFormSubmit = (e) => {
-    e.preventDefaul();
-    console.log(e.target.value);
-  };
   return (
     <div
       role="dialog"
@@ -22,13 +20,13 @@ const EditForm = ({
             type="text"
             className="input"
             id="editTask"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
             required
             placeholder="Enter Task"
           />
           <label htmlFor="editTask" className="label">
-            Edit Task
+            Edit Title
           </label>
         </div>
         <div className="wrapper">
@@ -36,11 +34,13 @@ const EditForm = ({
             className="textarea"
             id="textarea"
             required
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
             rows="3"
             cols="50"
           />
           <label htmlFor="textarea" className="label">
-            Enter Description
+            Edit Description
           </label>
         </div>
         <button type="submit" className="btn" aria-label="Edit">
