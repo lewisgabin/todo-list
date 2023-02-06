@@ -1,10 +1,11 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({openEditForm}) => {
+const TaskList = ({ openEditForm, tasks }) => {
   return (
-    
     <ul className="taskList">
-      <TaskItem openEditForm={openEditForm} />
+      {tasks.map((task,index) => {
+        return <TaskItem openEditForm={openEditForm} index={index} task={task} key={task.id} />;
+      })}
     </ul>
   );
 };

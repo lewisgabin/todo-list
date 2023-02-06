@@ -3,19 +3,18 @@ import {
   PencilSquareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-const TaskItem = ({ openEditForm }) => {
+const TaskItem = ({ openEditForm, task, index }) => {
   return (
     <>
       <li className="task">
         <div className="taskGroup">
-          <input type="checkbox" className="checkbox" id="check" />
+          <input type="checkbox" className="checkbox" id={`check${index}`} />
 
-          <label htmlFor="check">
-            {" "}
+          <label htmlFor={`check${index}`}>
             <p className="mark">
               <CheckIcon strokeWidth={2} width={24} height={24} />
             </p>
-            esto es
+            {task.description}
           </label>
         </div>
         <div className="taskGroup">
