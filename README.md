@@ -17,9 +17,6 @@ Installation:
 
 `npm install`  
 
-Connection to firabase:
-
-`rename .env.example to .env.local`
 
 To Start Server:
 
@@ -29,5 +26,5 @@ To Visit App:
 
 `http://localhost:5173/`  
 
-## other
+
 
