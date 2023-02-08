@@ -4,7 +4,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 const TaskItem = ({
-  openEditForm,
+  openForm,
   task,
   index,
   deleteTask,
@@ -28,18 +28,13 @@ const TaskItem = ({
               <CheckIcon strokeWidth={2} width={24} height={24} />
             </p>
             <p className="title">{task.title}</p>
-           <p className="description">{task.description}</p> 
+            <p className="description">{task.description}</p>
           </label>
         </div>
         <div className="taskGroup">
           <button
-            onClick={() =>
-              openEditForm({
-                description: task.description,
-                id: task.id,
-                title: task.title,
-              })
-            }
+           type="button"
+            onClick={() => openForm(task)}
             className="btn"
             id="edit"
             aria-label="edit"

@@ -2,7 +2,7 @@ import Counter from "./Counter";
 import TaskItem from "./TaskItem";
 
 const TaskList = ({
-  openEditForm,
+  openForm,
   tasks,
   deleteTask,
   toggleCompleteTask,
@@ -11,12 +11,12 @@ const TaskList = ({
 }) => {
   return (
     <ul className="taskList">
-      <Counter countTask={countTask}  countTaskCompleted={countTaskCompleted} />
+      <Counter countTask={countTask} tasks={tasks} countTaskCompleted={countTaskCompleted} />
       {tasks.map((task, index) => {
         return (
           <TaskItem
             deleteTask={deleteTask}
-            openEditForm={openEditForm}
+            openForm={openForm}
             index={index}
             task={task}
             toggleCompleteTask={toggleCompleteTask}

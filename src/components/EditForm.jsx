@@ -1,12 +1,5 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
-const EditForm = ({
-  closeEditForm,
-  updatedTask,
-  title,
-  setTitle,
-  description,
-  setDescription,
-}) => {
+const EditForm = ({ closeEditForm, updatedTask, task, changeValue }) => {
   return (
     <div
       role="dialog"
@@ -19,9 +12,10 @@ const EditForm = ({
           <input
             type="text"
             className="input"
+            name="title"
             id="editTask"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            onChange={changeValue}
+            value={task.title}
             required
             placeholder="Enter Task"
           />
@@ -33,9 +27,10 @@ const EditForm = ({
           <textarea
             className="textarea"
             id="textarea"
+            name="description"
             required
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            onChange={changeValue}
+            value={task.description}
             rows="3"
             cols="50"
           />

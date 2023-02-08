@@ -1,4 +1,4 @@
-const Counter = ({countTask, countTaskCompleted}) => {
+const Counter = ({countTask, countTaskCompleted,tasks}) => {
   return (
     <div className="counter">
       <div className="left">
@@ -7,7 +7,7 @@ const Counter = ({countTask, countTaskCompleted}) => {
       </div>
       <div className="right">
         <p>Completed Task</p>
-        <span>{ countTaskCompleted()} of {countTask()}</span>
+        <span>{ countTaskCompleted(tasks)} of {countTask(tasks)}</span>
       </div>
     </div>
   );
